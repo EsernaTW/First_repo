@@ -1,0 +1,30 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<classes>
+	<class name="Contacto">
+		<properties>
+			<property type="int" name="Id" />
+			<property type="string" name="Nombre" />
+			<property type="string" name="Numero" />
+		</properties>
+	</class>
+
+	<class name="Contacto" complementName="ConInfoAdicional">
+		<properties>
+			<property type="int" name="Id" />
+			<property type="string" name="Nombre" />
+			<property type="string" name="Numero" />
+			<property type="string" name="Direccion" default="Conocida" />
+		</properties>
+	</class>
+
+	<class name="Contacto" complementName="ConInfoElectronica">
+		<properties>
+			<property type="int" name="Id" />
+			<property type="string" name="Nombre" />
+			<property type="string" name="Numero" />
+			<property type="string" name="EMail" default="sin@correo.com" />
+			<property type="string" name="Twitter" default="/@twitter" />
+			<property type="string" name="FaceBook" default="/@facebook" />
+		</properties>
+	</class>
+</classes>

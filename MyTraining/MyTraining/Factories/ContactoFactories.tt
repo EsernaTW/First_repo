@@ -1,0 +1,65 @@
+﻿<#@ template debug="false" hostspecific="false" language="C#" #>
+<#@ assembly name="System.Core" #>
+<#@ assembly name="System.Xml" #>
+<#@ import namespace="System.Linq" #>
+<#@ import namespace="System.Text" #>
+<#@ import namespace="System.Xml" #>
+<#@ import namespace="System.IO" #>
+<#@ import namespace="System.Collections.Generic" #>
+<#@ output extension=".generated.cs" #>
+using MyTraining.Classes;
+
+// --------------------------------------------------------
+// Auto-generated code.
+// Please do not change this generated code.
+// Every change made to the resulting code will be deleted
+// after rebuilding project.
+// New functionalities must be included in partial classes.
+// --------------------------------------------------------
+
+namespace MyTraining.Factories {
+<#
+GenerateFromXML("./MyTraining/Factories/classes.xml");
+
+void GenerateFromXML(string xmlPath){
+#>
+	public class ContactoFactory : IContactoFactory {
+		public Contacto CrearContacto(string tipo, int id, string nombre, string numero)
+		{
+			switch(tipo) {
+<#
+	var xmlDoc = new XmlDocument();
+	xmlDoc.Load(xmlPath);
+
+	var classes = xmlDoc.SelectNodes("//class");
+	foreach(XmlNode classNode in classes) {
+		var className = classNode.Attributes["name"].Value;
+		var complementClassName = (classNode.Attributes["complementName"]!= null ? classNode.Attributes["complementName"].Value : string.Empty);	
+#>
+				case "<#= className #><#= complementClassName #>":
+						var _<#= className #><#= complementClassName #> = new <#= className #><#= complementClassName #>();
+<#
+		var properties = classNode.SelectNodes("properties/property");
+		foreach (XmlNode propertyNode in properties) {
+			var propertyName = propertyNode.Attributes["name"].Value;
+			var propertyType = propertyNode.Attributes["type"].Value;
+			var propertyDefault = (propertyNode.Attributes["default"] != null) ?
+			"\"" + (propertyNode.Attributes["default"].Value) + "\"" : propertyName.ToLower();
+#>
+							_<#= className #><#= complementClassName #>.Set<#= propertyName #>((<#= propertyType #>)<#= propertyDefault #>);
+<#
+		}
+#>
+						return _<#= className #><#= complementClassName #>;
+					break;
+<#
+	}
+#>
+			default: return null;
+			}
+		}
+	}
+<#
+}
+#>
+}

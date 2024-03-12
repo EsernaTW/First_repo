@@ -1,0 +1,24 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<classes>
+	<class name="Contacto">
+		<properties>
+			<property type="int" name="Id" />
+			<property type="string" name="Nombre" />
+			<property type="string" name="Numero" />
+		</properties>
+	</class>
+
+	<class name="Contacto" complementName="ConInfoAdicional" inheritsFrom="Contacto">
+		<properties>
+			<property type="string" name="Direccion" default="Conocida" />
+		</properties>
+	</class>
+
+	<class name="Contacto" complementName="ConInfoElectronica" inheritsFrom="Contacto">
+		<properties>
+			<property type="string" name="EMail" />
+			<property type="string" name="Twitter" />
+			<property type="string" name="FaceBook" />
+		</properties>
+	</class>
+</classes>
