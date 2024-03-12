@@ -57,3 +57,6 @@ MyTraining/.vs/MyTraining/v17/TestStore/0/testlog.manifest
 MyTraining/.vs/ProjectEvaluation/mytraining.metadata.v7.bin
 MyTraining/.vs/ProjectEvaluation/mytraining.projects.v7.bin
 *.generated.cs
+/MyTraining/MyTraining/bin/Debug/net7.0
+/MyTraining/.vs/MyTraining/FileContentIndex
+/MyTraining/MyTraining/obj/Debug/net7.0

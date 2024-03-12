@@ -1,14 +1,29 @@
-﻿using MyTraining.Classes;
+﻿using log4net;
+using log4net.Config;
+using MyTraining.Classes;
 using MyTraining.Factories;
 
 public static partial class Program
 {
 	public static void Main(string[] args)
-	{
+	{ 
+		ILog log;
 		IList<Contacto> contactos = new List<Contacto>();
 		IContactoFactory factory = new ContactoFactory();
 
 		var agenda = new Agenda(contactos.ToList(), factory);
+
+		var fileInfo = new FileInfo("log4net.config");
+		if (fileInfo.Exists)
+		{
+			XmlConfigurator.Configure(fileInfo);
+		}
+		else
+		{
+			Console.WriteLine("---------------------------------------------- Error cargando configuración de logs. ");
+		}
+		log = LogManager.GetLogger(typeof(Program));
+		log.Info("=============================== Agreando contactos ===============================");
 
 		agenda.AgregarContacto("Juan", "1234567890");
 		agenda.AgregarContacto("ContactoConInfoAdicional", "María", "3456789012");

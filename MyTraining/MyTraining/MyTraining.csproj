@@ -26,6 +26,7 @@
       <PrivateAssets>all</PrivateAssets>
       <IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
     </PackageReference>
+    <PackageReference Include="log4net" Version="2.0.16" />
   </ItemGroup>
 
   <ItemGroup>
@@ -36,6 +37,9 @@
     <None Update="Factories\ContactoFactories.tt">
       <Generator>TextTemplatingFileGenerator</Generator>
       <LastGenOutput>ContactoFactories.generated.cs</LastGenOutput>
+    </None>
+    <None Update="log4net.config">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </None>
   </ItemGroup>
 

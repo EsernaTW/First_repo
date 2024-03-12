@@ -10,6 +10,12 @@ namespace Tests
 	[TestClass()]
 	public class AgendaTests
 	{
+
+		[Setup()]
+		public void Setup() {
+
+		}
+
 		[TestMethod()]
 		public void AgendaTest()
 		{
